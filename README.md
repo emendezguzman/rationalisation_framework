@@ -1,10 +1,10 @@
 # Towards Explainable Multi-Label Text Classification: A Supervised Rationalisation Framework for Identifying Indicators of Forced Labour
 
-Forced labour is the most common type of modern slavery, affecting at least 24.9 million people worldwide [[1]](#1). We focus our work on multi-class and multi-label text classifiers for identifying forced labour indicators and attempt to make their predictions more understandable.
+Rationalisation methods attempt to explain the outcome of a text classification model by providing a natural language explanation *rationale* [[1]](#1). It has been observed that rationales are more understandable and easier to use since they are verbalised in human-comprehensible natural language [[2]](#2) [[3]](#3).
 
-This repository presents, to the best of our knowledge, the first openly accessible English corpus annotated for multi-class and multi-label forced labour detection.
+This repository presents a rationalisation framework to explain the outcome of a multi-label text classifier through extractive rationales.
 
-Our goal is to provide richer annotations for training text classification models, i.e., labels with rationales [[2]](#2). When annotating a news article, our annotators also highlight the evidence supporting their annotation, thereby allowing classifiers to learn *why* the instance belongs to a certain category.
+Our framework uses multi-task learning to produce rationales at a label level and allows the alternative of including human rationales during training as an extra supervision signal. We employ our framework to identify indicators of forced labour, as defined by the International Labour Organization [[4]](#4), for a rationale-annotated corpus of news articles [[5]](#5).
 
 ## Data Annotation
 
@@ -27,7 +27,7 @@ The JSON file is structured as follows:
 
 ### Installation
 
-You need to have Python 3.7 [[4]](#4) or higher installed. It is recommended that you use a virtual environment:
+You need to have Python 3.7 [[5]](#5) or higher installed. It is recommended that you use a virtual environment:
 
 ```
 sudo pip3 install -U virtualenv
@@ -44,7 +44,7 @@ pip install -r requirements.txt
 Clone the repository:
 
 ```
-git clone https://github.com/emendezguzman/rationales_for_detecting_forced_labour.git
+git clone https://github.com/emendezguzman/rationalisation_framework.git
 ```
 
 ### Classification Experiments
@@ -68,21 +68,31 @@ Finally, we employed four metrics to evaluate the performance of our baseline cl
 ## References
 
 <a id="1">[1]</a> 
-Landman, T. and Silverman, B. (2019). 
-Globalization and modern slavery. 
-Politics and Governance 7, no. 4: 275-290.
-
-<a id="2">[2]</a> 
-Lei, T., Barzilay, R. and Jaakkola, T. (2016). 
-Rationalizing neural predictions. 
+Lei, T., Barzilay, R. and Jaakkola, T. (2016)
+Rationalizing neural predictions.
 arXiv preprint arXiv:1606.04155.
 
+<a id="2">[2]</a> 
+DeYoung, J., Jain, S., Rajani, N. F., Lehman, E., Xiong, C., Socher, R., & Wallace, B. C. (2019).
+ERASER: A benchmark to evaluate rationalized NLP models.
+arXiv preprint arXiv:1911.03429.
+
 <a id="3">[3]</a> 
-International Labour Organization. (2012). 
-ILO Indicators of Forced Labour. In: Special Action Programme to Combat Forced Labour.
-Special Action Programme to Combat Forced Labour.
+Wang, H. and Dou, Y. (2022)
+Recent Development on Extractive Rationale for Model Interpretability: A Survey. 
+In: 2022 International Conference on Cloud Computing, Big Data and Internet of Things (3CBIT) (pp. 354-358). IEEE.
 
 <a id="4">[4]</a>
+International Labour Organization. (2012). 
+ILO Indicators of Forced Labour. 
+In: Special Action Programme to Combat Forced Labour. Special Action Programme to Combat Forced Labour.
+
+<a id="5">[5]</a>
+Guzman, E. M., Schlegel, V., & Batista-Navarro, R. (2022). 
+RaFoLa: A Rationale-Annotated Corpus for Detecting Indicators of Forced Labour. 
+arXiv preprint arXiv:2205.02684.
+
+<a id="5">[5]</a>
 Van Rossum, G. and Drake, F. (2009).
 Python 3 Reference Manual
 CreateSpace.
