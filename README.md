@@ -6,9 +6,9 @@ This repository presents a rationalisation framework to explain the outcome of a
 
 Our framework uses multi-task learning to produce rationales at a label level and allows the alternative of including human rationales during training as an extra supervision signal. We employ our framework to identify indicators of forced labour, as defined by the International Labour Organization [[4]](#4), for a rationale-annotated corpus of news articles [[5]](#5).
 
-## Data Annotation
+## Explainable Framework
 
-We developed an annotation scheme to guide annotators in labelling news articles. The scheme is based on the 11 indicators of forced labour defined by the ILO [[3]](#3). These indicators are intended to help law enforcement officials, labour inspectors, and NGO workers to identify persons who are possibly trapped in a forced labour situation. For a detailed description of the indicators of forced labour and examples for each one of them, we refer the reader to the **Annotation Guidelines**.
+We detail our framework for explainable text classification based on a multi-task learning implementation of the *encoder-decoder* architecture [[1]](#1) to produce rationales at a label level for a multi-label setting. The **encoder** is the module responsible for identifying the rationales within the input sequence at a label level, and the **decoder** is tasked with predicting labels based on the generated rationales [[6]](#6) [[7]](#7).
 
 ## Corpus
 
@@ -23,11 +23,11 @@ The JSON file is structured as follows:
 - **Set**: String detailing the role of the example in classification experiments (train, validation and test set).
 - **Rationales**: List of rationales, specifyng both the text and label for which the rationales were provided.
 
-## Text Classification
+## Rationalisation
 
 ### Installation
 
-You need to have Python 3.7 [[5]](#5) or higher installed. It is recommended that you use a virtual environment:
+You need to have Python 3.7 [[8]](#8) or higher installed. It is recommended that you use a virtual environment:
 
 ```
 sudo pip3 install -U virtualenv
@@ -92,7 +92,17 @@ Guzman, E. M., Schlegel, V., & Batista-Navarro, R. (2022).
 RaFoLa: A Rationale-Annotated Corpus for Detecting Indicators of Forced Labour. 
 arXiv preprint arXiv:2205.02684.
 
-<a id="5">[5]</a>
+<a id="6">[6]</a>
+Bastings, J., Aziz, W. and Titov, I. (2019). 
+Interpretable neural predictions with differentiable binary variables. 
+arXiv preprint arXiv:1905.08160.
+
+<a id="7">[7]</a>
+Madani, M. R. G., & Minervini, P. (2023). 
+REFER: An End-to-end Rationale Extraction Framework for Explanation Regularization. 
+arXiv preprint arXiv:2310.14418.
+
+<a id="8">[8]</a>
 Van Rossum, G. and Drake, F. (2009).
 Python 3 Reference Manual
 CreateSpace.
