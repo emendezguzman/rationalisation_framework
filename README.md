@@ -10,6 +10,8 @@ Our framework uses multi-task learning to produce rationales at a label level an
 
 We detail our framework for explainable text classification based on a multi-task learning implementation of the *encoder-decoder* architecture [[1]](#1) to produce rationales at a label level for a multi-label setting. The **encoder** is the module responsible for identifying the rationales within the input sequence at a label level, and the **decoder** is tasked with predicting labels based on the generated rationales [[6]](#6) [[7]](#7).
 
+![explainable_framework](https://github.com/emendezguzman/rationalisation_framework/assets/90763977/16139184-338a-46ce-bd12-8c4471ff451c)
+
 ## Corpus
 
 The corpus consists of **989 news articles** retrieved from specialised data sources and annotated according to the annotation schema detailed in the Annotation Guidelines.
