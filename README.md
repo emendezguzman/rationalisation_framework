@@ -12,19 +12,6 @@ We detail our framework for explainable text classification based on a multi-tas
 
 ![explainable_framework](https://github.com/emendezguzman/rationalisation_framework/assets/90763977/16139184-338a-46ce-bd12-8c4471ff451c)
 
-## Corpus
-
-The corpus consists of **989 news articles** retrieved from specialised data sources and annotated according to the annotation schema detailed in the Annotation Guidelines.
-
-The JSON file is structured as follows:
-
-- **Index**: News article ID (Integer).
-- **Title**: News article title (String).
-- **Content**: News article content (String).
-- **Labels**: List of labels suitable for multi-class multi-label classification.
-- **Set**: String detailing the role of the example in classification experiments (train, validation and test set).
-- **Rationales**: List of rationales, specifyng both the text and label for which the rationales were provided.
-
 ## Rationalisation
 
 ### Installation
@@ -49,23 +36,28 @@ Clone the repository:
 git clone https://github.com/emendezguzman/rationalisation_framework.git
 ```
 
-### Classification Experiments
+### Rationalisation Experiments
 
-The classification experiments were performed with the aid of the [Simple Transformers](https://simpletransformers.ai/) library, a Python package based on the Transformers library by HuggingFace [[5]](#5).
+The rationalisation experiments were performed with the aid of the [EGG Toolkit](https://github.com/facebookresearch/EGG) library, a Python package that allows researchers to quickly implement multi-agent games with discrete channel communication [[9]](#9).
 
 For the task at hand, we fine-tuned the following transformer-based models on our data set:
-- **DistilBERT** [[6]](#6): A smaller and faster transformer model trained by distilling BERT base [[7]](#7). 
-- **ALBERT** [[8]](#8): A light version of BERT \cite{devlin2018bert} that uses parameter-reduction techniques that allow for large-scale configurations.
-- **RoBERTa** [[9]](#9): A retraining of BERT with improved architecture and training methodology.  For this model, we use the base, distil-roberta and large versions.
-- **XLNet** [[10]](#10): A generalized autoregressive pre-trained method that uses improved training methodology and larger data than BERT [[7]](#7).
+- **DistilBERT** [[10]](#10): A smaller and faster transformer model trained by distilling BERT base [[11]](#11). 
+- **ALBERT** [[12]](#12): A light version of BERT \cite{devlin2018bert} that uses parameter-reduction techniques that allow for large-scale configurations.
+- **RoBERTa** [[13]](#13): A retraining of BERT with improved architecture and training methodology.  For this model, we use the base, distil-roberta and large versions.
+- **XLNet** [[14]](#14): A generalized autoregressive pre-trained method that uses improved training methodology and larger data than BERT.
+- **DeBERTa** [[15]](#15): A variant of the BERT model that introduces disentangled attention mechanisms and performs dynamic weight adaptation.
 
 ### Hyperparameter Tuning
 
-We split the data set into training, validation and test sets according to a 70:10:20 ratio and search the hyperparameter values that minimise the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and run a total of 40 training runs using WandB [[11]](#11). For more details about the implementation please refer to **hyperparameter_tuning.ipynb**.
+We split the data set into training, validation and test sets according to a 70:10:20 ratio and search the hyperparameter values that minimise the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and run a total of 25 training runs using WandB [[16]](#16). For more details about the implementation please refer to **hyperparameter_tuning.py**.
 
 ### Model Evaluation
 
-Finally, we employed four metrics to evaluate the performance of our baseline classifiers: F1 Score (F1), Label Ranking Precision Average Precision Score (LRAP), and Exact Match Ratio (EMR) [[12]](#12). For details about the implementation please refer to **evaluation.ipynb**.
+The primary goal of our rationalisation framework is to simultaneously enhance predictive performance and explainability by identifying concise and relevant rationales. Consequently, we employ the following evaluation metrics:
+- **Predictive Performance**: F1 Score (F1), Label Ranking Precision Average Precision Score (LRAP), and Exact Match Ratio (EMR) [[17]](#17).
+- **Explainability**: Plausibility, Suffiency and Comprehensiveness [[2]](#2).
+
+For details about the implementation please refer to **evaluation.ipynb**.
 
 ## References
 
@@ -109,42 +101,47 @@ Van Rossum, G. and Drake, F. (2009).
 Python 3 Reference Manual
 CreateSpace.
 
-<a id="5">[5]</a>
-Wolf, T. et al. (2019).
-Huggingface's transformers: State-of-the-art natural language processing
-arXiv preprint arXiv:1910.03771
+<a id="9">[9]</a>
+Kharitonov, E., Chaabouni, R., Bouchacourt, D. and Baroni, M. (2019). 
+EGG: a toolkit for research on Emergence of lanGuage in Games.
+arXiv preprint arXiv:1907.00852.
 
-<a id="6">[6]</a>
+<a id="10">[10]</a>
 Sanh, V., Debut, L., Chaumond, J. and Wolf, T. (2019).
 DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter
 arXiv preprint arXiv:1910.01108
 
-<a id="7">[7]</a>
+<a id="11">[11]</a>
 Devlin, J., Chang, M., Lee, K. and Toutanova, K. (2018).
 Bert: Pre-training of deep bidirectional transformers for language understanding
 arXiv preprint arXiv:1810.04805
 
-<a id="8">[8]</a>
+<a id="12">[12]</a>
 Lan, Z., Chen, M., Goodman, S., Gimpel, K., Sharma, P. and Soricut, R. (2019).
 Albert: A lite bert for self-supervised learning of language representations
 arXiv preprint arXiv:1909.11942
 
-<a id="9">[9]</a>
+<a id="13">[13]</a>
 Liu, Y. et al. (2019).
 Roberta: A robustly optimized bert pretraining approach
 arXiv preprint arXiv:1907.11692
 
-<a id="10">[10]</a>
+<a id="14">[14]</a>
 Yang, Z. et al. (2019).
 Xlnet: Generalized autoregressive pretraining for language understanding
 Advances in neural information processing systems no. 32.
 
-<a id="11">[11]</a>
+<a id="15">[15]</a>
+He, P., Liu, X., Gao, J. and Chen, W. (2020). 
+Deberta: Decoding-enhanced bert with disentangled attention. 
+arXiv preprint arXiv:2006.03654.
+
+<a id="16">[16]</a>
 Biewald, L. (2020)
 Experiment tracking with weights and biases, 
 Software available from wandb.com
 
-<a id="12">[12]</a>
+<a id="17">[17]</a>
 Feldman, R. and Sanger, J. (2007).
 The text mining handbook: advanced approaches in analyzing unstructured data
 Software available from wandb.com
