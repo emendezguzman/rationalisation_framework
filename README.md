@@ -47,6 +47,8 @@ For the task at hand, we fine-tuned the following transformer-based models on ou
 - **XLNet** [[14]](#14): A generalized autoregressive pre-trained method that uses improved training methodology and larger data than BERT.
 - **DeBERTa** [[15]](#15): A variant of the BERT model that introduces disentangled attention mechanisms and performs dynamic weight adaptation.
 
+For more details about the implementation please refer to **train.py**.
+
 ### Hyperparameter Tuning
 
 We split the data set into training, validation and test sets according to a 70:10:20 ratio and search the hyperparameter values that minimise the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and run a total of 25 training runs using WandB [[16]](#16). For more details about the implementation please refer to **hyperparameter_tuning.py**.
