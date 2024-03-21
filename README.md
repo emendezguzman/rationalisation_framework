@@ -36,6 +36,12 @@ Clone the repository:
 git clone https://github.com/emendezguzman/rationalisation_framework.git
 ```
 
+### Data Formatting
+
+The input data for our framework consists of input texts, target labels, and, optionally, human rationales. Target labels are encoded as n-dimensional vectors using one-hot-encoding, where *n* is the number of classes. As mentioned before, the human rationales are snippets of the input sequence that support labelling decisions at the label level. The human rationales are subsequently post-processed and represented in a *n* x *L* matrix format, where *L* is the maximum sequence length associated with the tokenisation applied over the input sequence. Each row corresponds to a rationale for a specific label, and it is filled with binary tags that indicate whether the token was selected or not as part of the human explanation.
+
+For details about the implementation, please refer to **hp_tuning.ipynb**.
+
 ### Rationalisation Experiments
 
 The rationalisation experiments were performed with the aid of the [EGG Toolkit](https://github.com/facebookresearch/EGG) library, a Python package that allows researchers to quickly implement multi-agent games with discrete channel communication [[9]](#9).
@@ -47,11 +53,11 @@ For the task at hand, we fine-tuned the following transformer-based models on ou
 - **XLNet** [[14]](#14): A generalized autoregressive pre-trained method that uses improved training methodology and larger data than BERT.
 - **DeBERTa** [[15]](#15): A variant of the BERT model that introduces disentangled attention mechanisms and performs dynamic weight adaptation.
 
-For more details about the implementation please refer to **train.py**.
+For more details about the implementation, please refer to **train.py**.
 
 ### Hyperparameter Tuning
 
-We split the data set into training, validation and test sets according to a 70:10:20 ratio and search the hyperparameter values that minimise the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and run a total of 25 training runs using WandB [[16]](#16). For more details about the implementation please refer to **hp_tuning.py**.
+We split the data set into training, validation, and test sets according to a 70:10:20 ratio and searched for the hyperparameter values that minimised the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and ran 25 training runs using WandB [[16]](#16). For more details about the implementation, please refer to **hp_tuning.py**.
 
 ### Model Evaluation
 
@@ -59,7 +65,7 @@ The primary goal of our rationalisation framework is to simultaneously enhance p
 - **Predictive Performance**: F1 Score (F1), Label Ranking Precision Average Precision Score (LRAP), and Exact Match Ratio (EMR) [[17]](#17).
 - **Explainability**: Plausibility, Suffiency and Comprehensiveness [[2]](#2).
 
-For details about the implementation please refer to **evaluation.ipynb**.
+For details about the implementation, please refer to **evaluation.ipynb**.
 
 ## References
 
