@@ -51,7 +51,7 @@ For more details about the implementation please refer to **train.py**.
 
 ### Hyperparameter Tuning
 
-We split the data set into training, validation and test sets according to a 70:10:20 ratio and search the hyperparameter values that minimise the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and run a total of 25 training runs using WandB [[16]](#16). For more details about the implementation please refer to **hyperparameter_tuning.py**.
+We split the data set into training, validation and test sets according to a 70:10:20 ratio and search the hyperparameter values that minimise the function loss over the validation set. To optimise the training process, we tuned the model hyperparameters using a random search method and run a total of 25 training runs using WandB [[16]](#16). For more details about the implementation please refer to **hp_tuning.py**.
 
 ### Model Evaluation
 
