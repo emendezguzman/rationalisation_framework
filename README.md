@@ -36,11 +36,11 @@ Clone the repository:
 git clone https://github.com/emendezguzman/rationalisation_framework.git
 ```
 
-### Data Formatting
+### Data Pre-Processing
 
 The input data for our framework consists of input texts, target labels, and, optionally, human rationales. Target labels are encoded as n-dimensional vectors using one-hot-encoding, where *n* is the number of classes. As mentioned before, the human rationales are snippets of the input sequence that support labelling decisions at the label level. The human rationales are subsequently post-processed and represented in a *n* x *L* matrix format, where *L* is the maximum sequence length associated with the tokenisation applied over the input sequence. Each row corresponds to a rationale for a specific label, and it is filled with binary tags that indicate whether the token was selected or not as part of the human explanation.
 
-For details about the implementation, please refer to **hp_tuning.ipynb**.
+For details about the implementation, please refer to **data_preprocessing.ipynb**.
 
 ### Rationalisation Experiments
 
